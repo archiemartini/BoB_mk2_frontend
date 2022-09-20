@@ -1,0 +1,62 @@
+{
+  "meals": [
+
+    {
+      "id": 47890,
+      "image": "https://spoonacular.com/recipeImages/47890-312x231.jpg",
+      "likes": 0,
+      "missedIngredientCount": 2,
+      "title": "Blackberry-Apple Pie Filling",
+      "usedIngredientCount": 2
+    },  
+    {
+      "id": 618390,
+      "image": "https://spoonacular.com/recipeImages/618390-312x231.jpg",
+      "likes": 1005,
+      "missedIngredientCount": 2,
+      "title": "Quick Apple Pies",
+      "usedIngredientCount": 1
+    },
+    {
+      "id": 48191,
+      "image": "https://spoonacular.com/recipeImages/48191-312x231.jpg",
+      "likes": 965,
+      "missedIngredientCount": 2,
+      "title": "Apple Crumble Recipe",
+      "usedIngredientCount": 1
+    },
+    {
+      "id": 496795,
+      "image": "https://spoonacular.com/recipeImages/496795-312x231.jpg",
+      "likes": 780,
+      "missedIngredientCount": 2,
+      "title": "The Best German Apple Pie Ever",
+      "usedIngredientCount": 1
+    },
+    {
+      "id": 615374,
+      "image": "https://spoonacular.com/recipeImages/615374-312x231.jpg",
+      "likes": 434,
+      "missedIngredientCount": 2,
+      "title": "Mom's Apple Pie",
+      "usedIngredientCount": 1
+    },
+    {
+      "id": 611026,
+      "image": "https://spoonacular.com/recipeImages/611026-312x231.jpg",
+      "likes": 138,
+      "missedIngredientCount": 2,
+      "title": "Apple Crisp III",
+      "usedIngredientCount": 1
+    },
+    {  
+      "id": 47950,
+      "image": "https://spoonacular.com/recipeImages/47950-312x231.jpg",
+      "likes": 35,
+      "missedIngredientCount": 2,
+      "title": "Cinnamon Apple Crisp",
+      "usedIngredientCount": 1
+  
+    }
+  ]
+}

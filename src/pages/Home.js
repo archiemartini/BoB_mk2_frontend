@@ -16,12 +16,14 @@ export default function Home() {
 
   return (
     <div className="Home">
-      <h1>Hello</h1>
-      <Button 
-        label="Show Meals"
-        variant="outlined"
-        onClick={() => setShowMeals(!showMeals)}
-      >Show Meals</Button>
+      <div className="hero">
+        <h1>Hello</h1>
+        <Button 
+          label="Show Meals"
+          variant="outlined"
+          onClick={() => setShowMeals(!showMeals)}
+        >Show Meals</Button>
+      </div>
   {
     showMeals &&
     <div className="meal--list">

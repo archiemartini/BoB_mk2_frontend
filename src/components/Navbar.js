@@ -5,7 +5,8 @@ export default function Navbar() {
 
   return (
     <nav className="nav">
-      <Link to="/" className="site-title"><KitchenIcon />Brains On Brioche</Link>
+    
+      <Link to="/" className="site-title"><KitchenIcon /><span className="site-title">Brains On Brioche</span></Link>
       <ul>
         <CustomLink to="/login">Login</CustomLink>
         {/* <CustomLink to="/logout">Logout</CustomLink> */}

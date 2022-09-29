@@ -30,14 +30,16 @@ export const { mealsRequested, mealsRecieved, mealsRequestFailed} = slice.action
 
 //holdall function for above actions
 const url = '/meals'
-export const loadMeals = () => (dispatch, getState) => {
-  const { lastFetch } = getState.entities.meals;
+export const loadMeals = (data) => (dispatch, getState) => {
+  const { lastFetch } = getState().entities.meals;
 
-  const diffInMinutes = moment().diff(moment(lastFetch), 'minutes')
-  if (diffInMinutes < 10) return;
+  // const diffInMinutes = moment().diff(moment(lastFetch), 'minutes')
+  // if (diffInMinutes < 10) return;
 
   return dispatch(apiCallBegan({
     url,
+    method: 'post',
+    data,
     onStart: mealsRequested.type,
     onSuccess: mealsRecieved.type,
     onError: mealsRequestFailed.type

@@ -19,6 +19,10 @@ body {
   margin-right: auto;
 }
 
+.gray {
+  color: gray;
+}
+
 /* /////////// NAVBAR /////////// */
 
 .site-title {
@@ -89,9 +93,12 @@ body {
 }
 
 .meal--list {
-  padding: 5px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
   display: flex;
   overflow-y: scroll;
+  max-width: ;
 }
 
 .meal--card {
@@ -109,11 +116,31 @@ body {
 }
 
 .meal--card:hover {
-  background-color: rgb(231, 231, 231);
+  background-color: #eaeaec;
 }
 
 .meal--card-title {
   max-height: 37px;
   text-align: center;
-  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+.search-button {
+  padding-bottom: 15px;
+}
+
+.selected-meal--card {
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  background-color: #eaeaec;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.selected-meal--image {
+  height: 100%;
+  width: 100%;
+  border-radius: 2px;
 }

@@ -1,31 +1,36 @@
-import { Button, TextField } from "@mui/material"
-import { useEffect, useState, useCallback } from "react"
+import { useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import MealCard from "../components/MealCard"
 import SelectedMeal from "../components/SelectedMeal"
-import mealData from '../data.json'
 import { loadMeals, selectMeal } from "../store/meals"
+import { Button } from "@mui/material"
+import CustomTextField from "../components/CustomMUI/CustomTextField"
+import CustomButton from "../components/CustomMUI/CustomButton"
 
 
 export default function Home() {
 
   const [search, setSearch] = useState('')
   const [showSelected, setShowSelected] = useState(false)
+  const [showMeals, setShowMeals] = useState(false)
+
   const mealData = useSelector(state => state.entities.meals.list)
   const selectedMeal = useSelector(state => state.entities.meals.selectedMeal)
+  
   const dispatch = useDispatch()
-  // const stableDispatch = useCallback(dispatch, [])
+  const ref = useRef(null);
 
-  const [showMeals, setShowMeals] = useState(false)
-  // const [mealData, setMealData] = useState([])
 
-  const handleSearchSubmit = () => {
-    dispatch(loadMeals({search: search}))
+  const handleSearchSubmit = async () => {
+    await dispatch(loadMeals({search: search}))
+    setShowMeals(true)
   }
 
   const handleSelectionSubmit = async (mealId) => {
+    console.log(selectedMeal)
     await dispatch(selectMeal({id: mealId}))
     setShowSelected(true)
+    setTimeout(() => ref.current?.scrollIntoView({behavior: 'smooth'}), 200)
   }
 
   const mealList = mealData.map((meal) => {
@@ -34,25 +39,21 @@ export default function Home() {
     )
   })
 
-
   return (
     <div className="Home">
       <div className="hero">
         <h1>Hello</h1>
-        <TextField
+        <CustomTextField
           label="Search Meals"
           onChange={(e) => setSearch(e.target.value)}
          />
-        <Button 
-          label="Search Submit" 
-          variant="outlined"
-          onClick={handleSearchSubmit}
-        ><b>Search</b></Button>
-        <Button 
-          label="Show Meals"
-          variant="outlined"
-          onClick={() => setShowMeals(!showMeals)}
-        >{showMeals ? <b>Hide Meals</b> : <b>Show Meals</b>}</Button>
+        <div className="search-button">
+          <Button 
+            label="Search Submit" 
+            variant="outlined"
+            onClick={handleSearchSubmit}
+          ><b>Search</b></Button>
+        </div>
       </div>
         {
           showMeals &&
@@ -60,7 +61,7 @@ export default function Home() {
           {mealList}
           </div>
         }
-      {showSelected && <SelectedMeal {...selectedMeal.info} />
+      {showSelected && <SelectedMeal {...selectedMeal.info} useRef={ref} />
 }
     </div>
   )

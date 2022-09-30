@@ -1,5 +1,6 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
 import KitchenIcon from '@mui/icons-material/Kitchen';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Navbar() {
 
@@ -7,7 +8,11 @@ export default function Navbar() {
     <nav className="nav">
     
       <Link to="/" className="site-title"><KitchenIcon /><span className="site-title">FridgeIt</span></Link>
+
       <ul>
+        <li>
+          <MenuIcon />
+        </li>
         <CustomLink to="/login">Login</CustomLink>
         {/* <CustomLink to="/logout">Logout</CustomLink> */}
         <CustomLink to="/signup">Sign Up</CustomLink>          

@@ -105,7 +105,7 @@ body {
 .meal--card {
   color: black;
   background-color: rgb(184, 183, 188);
-  padding: 5p 5px;
+  padding: 5px 5px;
   display: flex;
   flex-direction: column;
   width: 150px;
@@ -156,7 +156,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh; 
-  padding: 1rem 0.5rem;
+  /* padding: 1rem 0.5rem; */
 }
 
 section {
@@ -166,7 +166,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 1rem;
+  /* padding: 1rem; */
   background-color: rgba(0,0,0,0.4);
 }
 
@@ -182,15 +182,15 @@ a, a:visited {
   color: #fff;
 }
 
-input[type="text"],
+/* input[type="text"],
 input[type="password"],
 button,
 textarea {
 font-family: 'Nunito', sans-serif;
-font-size: 22px;
-padding: 0.25rem;
-border-radius: 0.5rem;
-}
+/* font-size: 22px; */
+/* padding: 0.25rem; */
+/* border-radius: 0.5rem;
+} */ */
 
 label,
 button {

@@ -1,13 +1,13 @@
 import { useRef, useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
 import {faCheck, faTimes, faInfoCircle} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import { axios } from "axios"
+import { registerUser } from '../store/user.js'
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 // must start with lower or upper case, then must be followed from anywhere between three to 23 characters that cna be lower/upper/digits/hyphens/underscores
 const PWD_REGEX = /^.{4,24}$/;
 // password must contain one upper case, one lower case one digit and one special character
-const REGISTER_URL = '/signup'
 
 export default function SignUp() {
 
@@ -28,6 +28,8 @@ export default function SignUp() {
 
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
       userRef.current.focus();
@@ -56,16 +58,7 @@ export default function SignUp() {
           return;
       }
       try {
-          const response = await axios.post(REGISTER_URL,
-              JSON.stringify({ user, pwd }),
-              {
-                  headers: { 'Content-Type': 'application/json' },
-                  withCredentials: true
-              }
-          );
-          console.log(response?.data);
-          console.log(response?.accessToken);
-          console.log(JSON.stringify(response))
+          await dispatch(registerUser({user, password: pwd}))
           setSuccess(true);
           //clear state and controlled inputs
           //need value attrib on inputs for this
@@ -75,6 +68,7 @@ export default function SignUp() {
       } catch (err) {
           if (!err?.response) {
               setErrMsg('No Server Response');
+              console.log(err)
           } else if (err.response?.status === 409) {
               setErrMsg('Username Taken');
           } else {

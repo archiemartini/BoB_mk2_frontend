@@ -5,8 +5,6 @@ import SelectedMeal from "../components/SelectedMeal"
 import { loadMeals, selectMeal } from "../store/meals"
 import { Button } from "@mui/material"
 import CustomTextField from "../components/CustomMUI/CustomTextField"
-import CustomButton from "../components/CustomMUI/CustomButton"
-
 
 export default function Home() {
 
@@ -30,7 +28,7 @@ export default function Home() {
     console.log(selectedMeal)
     await dispatch(selectMeal({id: mealId}))
     setShowSelected(true)
-    setTimeout(() => ref.current?.scrollIntoView({behavior: 'smooth'}), 200)
+    setTimeout(() => ref.current?.scrollIntoView({behavior: 'smooth'}), 1)
   }
 
   const mealList = mealData.map((meal) => {

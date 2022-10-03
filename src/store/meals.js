@@ -52,7 +52,7 @@ export const {
 export const loadMeals = (data) => (dispatch, getState) => {
   const url = '/meals'
 
-  const { lastFetch } = getState().entities.meals;
+  // const { lastFetch } = getState().entities.meals;
 
   // const diffInMinutes = moment().diff(moment(lastFetch), 'minutes')
   // if (diffInMinutes < 10) return;

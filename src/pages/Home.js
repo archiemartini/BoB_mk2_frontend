@@ -2,7 +2,7 @@ import { useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import MealCard from "../components/MealCard"
 import SelectedMeal from "../components/SelectedMeal"
-import { loadMeals, selectMeal } from "../store/meals"
+import { searchMeals, selectMeal } from "../store/meals"
 import { Button } from "@mui/material"
 import CustomTextField from "../components/CustomMUI/CustomTextField"
 
@@ -20,7 +20,7 @@ export default function Home() {
 
 
   const handleSearchSubmit = async () => {
-    await dispatch(loadMeals({search: search}))
+    await dispatch(searchMeals({search: search}))
     setShowMeals(true)
   }
 
@@ -44,6 +44,7 @@ export default function Home() {
         <CustomTextField
           label="Search Meals"
           onChange={(e) => setSearch(e.target.value)}
+          value={search}
          />
         <div className="search-button">
           <Button 

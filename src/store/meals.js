@@ -28,11 +28,11 @@ const slice = createSlice({
     selectedMealReceived: (meals, action) => {
       console.log("selectedmealReceived", action.payload)
       meals.selectedMeal.info = action.payload
-      meals.loading = false;
-      meals.lastFetch = Date.now()
+      meals.selectedMeal.loading = false;
+      meals.selectedMeal.lastFetch = Date.now()
     },
     selectedMealRequestFailed: (meals, action) => {
-      meals.loading = false
+      meals.selectedMeal.loading = false
     },
   }
 })
@@ -49,7 +49,7 @@ export const {
 } = slice.actions
 
 //holdall function for above actions
-export const loadMeals = (data) => (dispatch, getState) => {
+export const searchMeals = (data) => (dispatch, getState) => {
   const url = '/meals'
 
   // const { lastFetch } = getState().entities.meals;

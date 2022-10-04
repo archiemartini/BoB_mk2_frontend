@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import MealCard from "../components/MealCard"
 import SelectedMeal from "../components/SelectedMeal"
 import { searchMeals, selectMeal } from "../store/meals"
-import { Button } from "@mui/material"
+import { Button, CircularProgress } from "@mui/material"
 import CustomTextField from "../components/CustomMUI/CustomTextField"
 
 export default function Home() {
@@ -11,23 +11,26 @@ export default function Home() {
   const [search, setSearch] = useState('')
   const [showSelected, setShowSelected] = useState(false)
   const [showMeals, setShowMeals] = useState(false)
+  const [selectedId, setSelectedId] = useState(null)
 
   const mealData = useSelector(state => state.entities.meals.list)
   const selectedMeal = useSelector(state => state.entities.meals.selectedMeal)
+  const isMealsLoading = useSelector(state => state.entities.meals.loading)
+  const isSelectedLoading = useSelector(state => state.entities.meals.loading)
   
   const dispatch = useDispatch()
   const ref = useRef(null);
 
 
   const handleSearchSubmit = async () => {
-    await dispatch(searchMeals({search: search}))
     setShowMeals(true)
+    await dispatch(searchMeals({search: search}))
   }
 
   const handleSelectionSubmit = async (mealId) => {
-    console.log(selectedMeal)
-    await dispatch(selectMeal({id: mealId}))
+    setSelectedId(mealId)
     setShowSelected(true)
+    await dispatch(selectMeal({id: mealId}))
     setTimeout(() => ref.current?.scrollIntoView({behavior: 'smooth'}), 1)
   }
 
@@ -36,6 +39,13 @@ export default function Home() {
       <MealCard key={meal.id} {...meal} handleSelectionSubmit={handleSelectionSubmit}/>
     )
   })
+
+  const selectedMealWithIngredients = () => {
+    const missedIngredients = mealData.filter((meal) => meal.id !== selectedId)[0].missedIngredients
+    const usedIngredients = mealData.filter((meal) => meal.id !== selectedId)[0].usedIngredients
+
+    return {...selectedMeal.info, missedIngredients, usedIngredients}
+  }
 
   return (
     <div className="Home">
@@ -53,15 +63,14 @@ export default function Home() {
             onClick={handleSearchSubmit}
           ><b>Search</b></Button>
         </div>
-      </div>
-        {
-          showMeals &&
-          <div className="meal--list">
-          {mealList}
-          </div>
-        }
-      {showSelected && <SelectedMeal {...selectedMeal.info} useRef={ref} />
-}
+        {/* <CircularProgress /> */}
+        </div>          
+        <div className="meal--list">
+        {showMeals && isMealsLoading ? <CircularProgress className="center"/> : mealList}
+        </div>
+      {showSelected && 
+      <SelectedMeal {...selectedMealWithIngredients()} useRef={ref} key={selectMeal.id} />
+      }
     </div>
   )
 }

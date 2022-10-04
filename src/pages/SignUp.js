@@ -58,7 +58,7 @@ export default function SignUp() {
           return;
       }
       try {
-          await dispatch(registerUser({user, password: pwd}))
+          await dispatch(registerUser({username: user, password: pwd}))
           setSuccess(true);
           //clear state and controlled inputs
           //need value attrib on inputs for this

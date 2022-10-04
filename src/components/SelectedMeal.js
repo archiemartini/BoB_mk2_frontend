@@ -14,6 +14,14 @@ export default function SelectedMeal(props) {
     }
   }
 
+  const ingredients = () => {
+    return props.extendedIngredients.map((ingredient) => {
+      return (
+        <li>{ingredient.name[0].toUpperCase() + ingredient.name.slice(1)}</li>
+      )
+    })
+  }
+
   return (
     <div className="selected-meal--card" ref={props.useRef}>
       <img src={props.image} alt={props.id} className="selected-meal--image"></img>
@@ -25,6 +33,9 @@ export default function SelectedMeal(props) {
       <ol>
         {instructions()}
       </ol>
+      <ul>
+        {ingredients()}
+      </ul>
     </div>
   )
 }

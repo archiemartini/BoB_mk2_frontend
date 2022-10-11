@@ -10,6 +10,7 @@ A managed, fully tested, "Ducks" pattern, redux setup. Monitored with Redux Dev 
 
 Redux Store:
 
+```
 {
   entities: {
     user: {
@@ -27,5 +28,6 @@ Redux Store:
     authToken: ...,
   }
 }
+```
 
 ## MongoDB
